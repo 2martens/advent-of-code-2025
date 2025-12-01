@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "AdventOfCode2025",
+    platforms: [
+        .macOS(.v13)
+    ],
     products: [
         .executable(name: "AdventOfCode2025", targets: ["AdventOfCode2025"])
     ],
@@ -12,12 +15,15 @@ let package = Package(
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .executableTarget(
-            name: "AdventOfCode2025"
+            name: "AdventOfCode2025",
+            swiftSettings: [
+                .enableUpcomingFeature("StrictConcurrency")
+            ]
         ),
         .testTarget(
             name: "AdventOfCode2025Tests",
             dependencies: ["AdventOfCode2025"]
         ),
     ],
-    
+
 )
