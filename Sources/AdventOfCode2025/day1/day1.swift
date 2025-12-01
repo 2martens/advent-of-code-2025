@@ -20,12 +20,12 @@
 
 import Foundation
 
-public struct Instruction {
+struct Instruction {
     let isLeft: Bool
     let steps: Int
 }
 
-public struct Wheel {
+struct Wheel {
     let lowestPosition: Int
     let highestPosition: Int
     let numberOfPositions: Int
@@ -74,9 +74,10 @@ public struct Wheel {
     }
 }
 
+@available(macOS 13, *)
 func readWheelInstructions(_ baseDirectory: URL) throws -> [Instruction] {
     var resultInstructions = [Instruction]()
-    let filePath = baseDirectory.appending(path: "day1/input.csv")
+    let filePath = baseDirectory.appending(path: "inputs/day1.csv")
     let instructions = try String(contentsOf: filePath, encoding: .utf8)
     instructions.split(separator: "\n").forEach { line in
         let index = line.index(after: line.startIndex)
@@ -90,6 +91,7 @@ func readWheelInstructions(_ baseDirectory: URL) throws -> [Instruction] {
     return resultInstructions
 }
 
+@available(macOS 13, *)
 func day1(_ baseDirectory: URL) throws {
     let instructions = try readWheelInstructions(baseDirectory)
     var wheel = Wheel()
