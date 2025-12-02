@@ -83,27 +83,17 @@ func isInvalidPart1(_ id: Int) -> Bool {
 
 func isInvalidPart2(_ id: Int) -> Bool {
     let idAsString = String(id)
-    var dividers: [Int] = []
-    for multiplier in 1...idAsString.count {
-        multiplier > 1 && idAsString.count.isMultiple(of: multiplier)
-            ? dividers.append(multiplier) : ()
-    }
 
     for offset in 1...Int(ceil(Double(idAsString.count) / 2.0)) {
         let index = idAsString.index(idAsString.startIndex, offsetBy: offset)
         let segment = idAsString[..<index]
-        for divider in dividers {
-            if !idAsString.hasSuffix(segment) {
-                continue
-            }
-
-            var multipliedString: String = ""
-            for _ in 0..<divider {
-                multipliedString += segment.description
-            }
-            if idAsString == multipliedString {
-                return true
-            }
+        var remaining: any StringProtocol = idAsString
+        repeat {
+            remaining = remaining.dropFirst(segment.count)
+        } while remaining.hasPrefix(segment) && remaining.count >= segment.count
+        
+        if remaining.isEmpty {
+           return true
         }
     }
 
