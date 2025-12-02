@@ -46,6 +46,8 @@ struct AdventOfCode {
         switch day {
         case "day1":
             try day1(xcodePath)
+        case "day2":
+            try day2(xcodePath)
         default:
             fatalError("Unknown day: \(day)")
         }
@@ -67,8 +69,8 @@ struct AdventOfCode {
     }
 
     static func determineDay() -> String {
-        print("Please choose day. Available: day1")
-        return readLine(strippingNewline: true) ?? "day1"
+        print("Please choose day. Available: day1, day2")
+        return readLine(strippingNewline: true) ?? "day2"
     }
 
 }

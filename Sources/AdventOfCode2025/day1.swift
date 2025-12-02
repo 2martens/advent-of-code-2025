@@ -77,7 +77,7 @@ struct Wheel {
 @available(macOS 13, *)
 func readWheelInstructions(_ baseDirectory: URL) throws -> [Instruction] {
     var resultInstructions = [Instruction]()
-    let filePath = baseDirectory.appending(path: "inputs/day1.csv")
+    let filePath = baseDirectory.appending(path: "inputs/day1.txt")
     let instructions = try String(contentsOf: filePath, encoding: .utf8)
     instructions.split(separator: "\n").forEach { line in
         let index = line.index(after: line.startIndex)
